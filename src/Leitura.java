@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Leitura {
 
@@ -20,9 +21,8 @@ public class Leitura {
 
 	Grafo gr = new Grafo();
 
-	private void readAndFillDependencies() {
-		String fileName = ("oito_enunciado");
-		Path path = Paths.get(fileName);
+	private void readAndFillDependencies(){
+        Path path = Paths.get("src/casos_cohen/" + fileName);
 		try (BufferedReader reader = Files.newBufferedReader(path, Charset.forName("UTF8"))){
             String line = reader.readLine();
 
@@ -42,10 +42,11 @@ public class Leitura {
                 Vertice dependent = new Vertice(task2[1], Integer.parseInt(task2[1]));
                 
                 dependenciesTree.addAresta(dependency, dependent);
-                
+               
             }
-        } catch (Exception e) {
-            System.err.println(e);
+        } catch (IOException e) {
+            System.err.format("Erro na leitura do arquivo: " +e);
+            System.exit(0);
         }
     }
 }

@@ -26,12 +26,17 @@ public class Vertice {
 		return adj;
 	}
 
+	@Override
+	public String toString() {
+		return "Vertice [nome=" + nome + ", time=" + time + ", adj=" + adj + "]";
+	}
+
 	public void setAdj(List<Aresta> adj) {
 		this.adj = adj;
 	}
 
 		Vertice(String nome, int time) {
-        	this.time = time;
+        this.time = time;
             this.nome = nome;
             this.adj = new ArrayList<Aresta>();
         }
