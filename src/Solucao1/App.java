@@ -1,3 +1,14 @@
+package Solucao1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+public class App {
 
     static Grafo grafo;
     static int tempo_percorrido;
@@ -148,19 +159,32 @@
                 List<String> listaAuxiliar2 = new ArrayList<>();
                 for(Grafo.Vertice tarefaAdjacente: listaAuxiliar1){
                     listaAuxiliar2.add(tarefaAdjacente.tarefa);
-                }for (String tarefaAdjacente : listaAuxiliar2) {
+                }
+
+
+                for (String tarefaAdjacente : listaAuxiliar2) {
                     grafo.addAresta(novaTarefa, tarefaAdjacente);
                     grafo.removeAresta(tarefa, tarefaAdjacente);
-                }}     else{List<Grafo.Vertice> listaAuxiliar1 = grafo.getVerticesAdj(tarefa);
+                }
+
+            }
+            else{
+
+                List<Grafo.Vertice> listaAuxiliar1 = grafo.getVerticesAdj(tarefa);
                 List<String> listaAuxiliar2 = new ArrayList<>();
-for(Grafo.Vertice auxTarefa: listaAuxiliar1){
+
+                for(Grafo.Vertice auxTarefa: listaAuxiliar1){
                     listaAuxiliar2.add(auxTarefa.tarefa);
-                }if(!listaAuxiliar2.isEmpty()) {
+                }
+
+                if(!listaAuxiliar2.isEmpty()) {
                     listaAuxiliar2.sort(String::compareToIgnoreCase);
                     listaPrioridade.add(listaAuxiliar2.get(0));
                 }
             }
-grafo.removeVertice(tarefa);
+
+
+            grafo.removeVertice(tarefa);
             listaVertice.remove(tarefa);
 
         }
